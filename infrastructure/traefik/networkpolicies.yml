@@ -9,9 +9,7 @@ spec:
       app.kubernetes.io/name: traefik
   ingress:
     - fromEntities:
-        - world
-        - host
-        - remote-node
+        - all
       toPorts:
         - ports:
             - port: "80"
