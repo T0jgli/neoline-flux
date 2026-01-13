@@ -23,7 +23,7 @@ config:
         Name        loki
         Match       matched.*
         Host        logs-prod-013.grafana.net
-        Port        443
+        port        443
         tls         on
         tls.verify  on
         http_user   ${USERNAME}
