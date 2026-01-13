@@ -6,8 +6,8 @@ metadata:
 spec:
   ipAllowList:
     sourceRange:
-      # - 84.2.218.60/32
-      - 0.0.0.0/0
+      - 84.2.218.60/32
+      # - 0.0.0.0/0
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
