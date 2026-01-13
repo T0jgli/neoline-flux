@@ -4,6 +4,9 @@ metadata:
   name: kalandozas-admin-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-allow-neoline@kubernetescrd,
+      kube-system-security-headers@kubernetescrd
 spec:
   tls:
     - hosts:

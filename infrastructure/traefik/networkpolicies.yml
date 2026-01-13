@@ -10,38 +10,11 @@ spec:
   ingress:
     - fromEntities:
         - world
+        - host
+        - remote-node
       toPorts:
         - ports:
             - port: "80"
               protocol: TCP
-          rules:
-            http:
-              - host: kalandozas.hu
-              - host: contibus.hu
-              - host: neoline-contitrans.hu
-        - ports:
             - port: "443"
               protocol: TCP
-          rules:
-            tls:
-              - sni: kalandozas.hu
-              - sni: contibus.hu
-              - sni: neoline-contitrans.hu
-
-    # - fromCIDR:
-    #     - "203.0.113.10/32"
-    - fromEntities:
-        - world
-      toPorts:
-        - ports:
-            - port: "80"
-              protocol: TCP
-          rules:
-            http:
-              - host: "admin.kalandozas.hu"
-        - ports:
-            - port: "443"
-              protocol: TCP
-          rules:
-            tls:
-              - sni: "admin.kalandozas.hu"

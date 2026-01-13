@@ -2,6 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kalandozas-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-security-headers@kubernetescrd
 spec:
   tls:
     - hosts:

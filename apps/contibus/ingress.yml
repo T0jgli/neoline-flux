@@ -4,6 +4,8 @@ metadata:
   name: contibus-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-security-headers@kubernetescrd
 spec:
   tls:
     - hosts:
