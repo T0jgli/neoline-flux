@@ -1,6 +1,25 @@
 flush: 10
 
 config:
+  customParsers: |
+    [PARSER]
+        Name        docker_utf8
+        Format      json
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L
+        # Magic line: decodes escaped Unicode into actual UTF-8 characters
+        Decode_Field_As escaped_utf8 log
+
+  inputs: |
+    [INPUT]
+        Name             tail
+        Path             /var/log/containers/*.log
+        multiline.parser docker, cri
+        Parser           docker_utf8
+        Tag              kube.*
+        Mem_Buf_Limit    5MB
+        Skip_Long_Lines  On
+
   filters: |
     [FILTER]
         Name                kubernetes
