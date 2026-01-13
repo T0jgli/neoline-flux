@@ -7,7 +7,5 @@ generatorOptions:
 namespace: portainer
 
 resources:
-  - ns.yml
-
   - deployment.yml
   - networkpolicy.yml
