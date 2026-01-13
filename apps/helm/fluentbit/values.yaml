@@ -24,6 +24,8 @@ config:
         Match       matched.*
         Host        logs-prod-013.grafana.net
         Port        443
+        tls         on
+        tls.verify  on
         http_user   ${USERNAME}
         http_passwd ${PASSWORD}
         buffer_size 400k
