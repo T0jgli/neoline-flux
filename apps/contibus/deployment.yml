@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-              name: contibus-env
+                name: contibus-env
           ports:
             - name: http
               containerPort: 8081

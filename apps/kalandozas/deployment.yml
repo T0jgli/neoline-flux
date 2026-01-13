@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-              name: kalandozas-env
+                name: kalandozas-env
           ports:
             - name: http
               containerPort: 8082

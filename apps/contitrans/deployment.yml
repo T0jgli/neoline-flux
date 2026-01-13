@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - secretRef:
-              name: contitrans-env
+                name: contitrans-env
           ports:
             - name: http
               containerPort: 8084
