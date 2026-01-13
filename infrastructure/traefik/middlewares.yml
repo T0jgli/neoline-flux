@@ -23,3 +23,12 @@ spec:
       Referrer-Policy: "strict-origin-when-cross-origin"
       Strict-Transport-Security: "max-age=63072000; includeSubDomains; preload"
       Permissions-Policy: "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: kube-system
+spec:
+  redirectScheme:
+    scheme: https
