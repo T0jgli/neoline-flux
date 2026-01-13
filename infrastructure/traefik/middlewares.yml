@@ -53,19 +53,3 @@ metadata:
 spec:
   redirectScheme:
     scheme: https
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: edge-waf
-  namespace: kube-system
-spec:
-  plugin:
-    coraza:
-      # Automatically includes the OWASP Core Rule Set
-      crsEnabled: true
-      directives:
-        - SecRuleEngine On
-        # Only Include the specific attack logic files which are usually better mapped
-        - Include @owasp_crs/REQUEST-942-APPLICATION-ATTACK-SQLI.conf
-        - Include @owasp_crs/REQUEST-941-APPLICATION-ATTACK-XSS.conf
