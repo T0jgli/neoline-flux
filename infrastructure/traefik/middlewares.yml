@@ -12,6 +12,16 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
+  name: global-ratelimit
+  namespace: kube-system
+spec:
+  rateLimit:
+    average: 100
+    burst: 50
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
   name: security-headers
   namespace: kube-system
 spec:
@@ -23,6 +33,17 @@ spec:
       Referrer-Policy: "strict-origin-when-cross-origin"
       Strict-Transport-Security: "max-age=63072000; includeSubDomains; preload"
       Permissions-Policy: "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: secure-chain
+  namespace: kube-system
+spec:
+  chain:
+    middlewares:
+      - name: security-headers
+      - name: global-ratelimit
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware

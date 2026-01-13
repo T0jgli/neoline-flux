@@ -6,8 +6,8 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-cloudflare"
     traefik.ingress.kubernetes.io/router.middlewares: |
       kube-system-allow-neoline@kubernetescrd,
-      kube-system-security-headers@kubernetescrd,
-      kube-system-redirect-https@kubernetescrd
+      kube-system-redirect-https@kubernetescrd,
+      kube-system-secure-chain@kubernetescrd
 spec:
   tls:
     - hosts:
