@@ -5,7 +5,7 @@ metadata:
   namespace: fluentbit
 spec:
   interval: 10m
-  targetNamespace: kube-system
+  targetNamespace: fluentbit
   releaseName: fluentbit
   chart:
     spec:
