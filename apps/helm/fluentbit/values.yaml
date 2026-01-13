@@ -1,1 +1,33 @@
-fullnameOverride: sealed-secrets-controller
+flush: 10
+
+config:
+  filters: |
+    [FILTER]
+        Name                kubernetes
+        Match               kube.*
+        Merge_Log           On
+        Keep_Log            Off
+        K8S-Logging.Parser  On
+        K8S-Logging.Exclude Off
+
+    # This filter re-tags logs only if they come from specific namespaces
+    [FILTER]
+        Name                  rewrite_tag
+        Match                 kube.*
+        Rule                  $kubernetes['namespace_name'] ^(contibus|contitrans|kalandozas|kalandozas-admin)$  matched.$TAG true
+        Emitter_Name          re_emitted_logs
+
+  outputs: |
+    # Only send logs that were re-tagged with "matched.*"
+    [OUTPUT]
+        Name        loki
+        Match       matched.*
+        Host        ${LOKI_URL}
+        Port        443
+        BatchSize   400k
+        Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name']
+        Auto_Kubernetes_Labels On
+
+envFrom:
+  - secretRef:
+      name: loki-credentials

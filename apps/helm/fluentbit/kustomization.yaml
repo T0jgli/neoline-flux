@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - secrets.yaml
-  # - fluentbit.yaml
+  - fluentbit.yaml
 
 configMapGenerator:
   - name: fluentbit-values
