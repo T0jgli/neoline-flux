@@ -9,4 +9,5 @@ namespace: ingresses
 resources:
   - ns.yml
 
+  - middlewares.yml
   - ingress.yml
