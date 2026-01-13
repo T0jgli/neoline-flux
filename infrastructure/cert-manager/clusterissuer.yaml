@@ -8,7 +8,7 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: kovalikadam@gmail.com
     privateKeySecretRef:
-      name: letsencrypt-poc
+      name: letsencrypt-cloudflare
     solvers:
       - dns01:
           cloudflare:
