@@ -9,7 +9,7 @@ spec:
   releaseName: fluentbit
   chart:
     spec:
-      chart: fluentbit
+      chart: fluent-bit
       version: "0.54.1"
       sourceRef:
         kind: HelmRepository
