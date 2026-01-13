@@ -66,13 +66,12 @@ spec:
       crsEnabled: true
       directives:
         - SecRuleEngine On
-        # 1. Initialize CRS (This sets up the scoring variables)
-        - Include @owasp_crs/crs-setup.conf
-
-        # 2. Configure your specific thresholds
+        # Instead of 'Include @owasp_crs/crs-setup.conf', we use the direct settings:
+        - SecAction "id:900030,phase:1,pass,nolog,setvar:tx.anomaly_score_blocking=on"
         - SecAction "id:900110,phase:1,pass,nolog,setvar:tx.paranoia_level=1"
         - SecAction "id:900111,phase:1,pass,nolog,setvar:tx.inbound_anomaly_score_threshold=5"
-
-        # 3. Include the attack rules
+        - SecDefaultAction "phase:1,log,auditlog,deny,status:403"
+        - SecDefaultAction "phase:2,log,auditlog,deny,status:403"
+        # Only Include the specific attack logic files which are usually better mapped
         - Include @owasp_crs/REQUEST-942-APPLICATION-ATTACK-SQLI.conf
         - Include @owasp_crs/REQUEST-941-APPLICATION-ATTACK-XSS.conf
