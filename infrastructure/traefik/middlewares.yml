@@ -53,3 +53,26 @@ metadata:
 spec:
   redirectScheme:
     scheme: https
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: edge-waf
+  namespace: kube-system
+spec:
+  plugin:
+    coraza:
+      # Automatically includes the OWASP Core Rule Set
+      crsEnabled: true
+      directives:
+        - SecRuleEngine On
+        # Set the sensitivity (Paranoia Level 1 is standard)
+        - SecAction "id:900110,phase:1,pass,nolog,setvar:tx.paranoia_level=1"
+        # Block if anomaly score is 5 or higher
+        - SecAction "id:900110,phase:1,pass,nolog,setvar:tx.inbound_anomaly_score_threshold=5"
+        # Default action for blocked requests
+        - SecDefaultAction "phase:1,log,auditlog,deny,status:403"
+        - SecDefaultAction "phase:2,log,auditlog,deny,status:403"
+        # Include specific CRS rule categories
+        - Include @owasp_crs/REQUEST-942-APPLICATION-ATTACK-SQLI.conf
+        - Include @owasp_crs/REQUEST-941-APPLICATION-ATTACK-XSS.conf

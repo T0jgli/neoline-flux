@@ -6,7 +6,8 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
       kube-system-redirect-https@kubernetescrd,
-      kube-system-secure-chain@kubernetescrd
+      kube-system-secure-chain@kubernetescrd,
+      kube-system-edge-waf@kubernetescrd
 spec:
   tls:
     - hosts:
