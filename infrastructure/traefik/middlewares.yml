@@ -66,13 +66,13 @@ spec:
       crsEnabled: true
       directives:
         - SecRuleEngine On
-        # Set the sensitivity (Paranoia Level 1 is standard)
+        # Rule 900110: Set Paranoia Level
         - SecAction "id:900110,phase:1,pass,nolog,setvar:tx.paranoia_level=1"
-        # Block if anomaly score is 5 or higher
-        - SecAction "id:900110,phase:1,pass,nolog,setvar:tx.inbound_anomaly_score_threshold=5"
-        # Default action for blocked requests
+        # Rule 900111: Set Anomaly Threshold (Changed ID from 900110 to 900111)
+        - SecAction "id:900111,phase:1,pass,nolog,setvar:tx.inbound_anomaly_score_threshold=5"
+        # Default actions
         - SecDefaultAction "phase:1,log,auditlog,deny,status:403"
         - SecDefaultAction "phase:2,log,auditlog,deny,status:403"
-        # Include specific CRS rule categories
+        # Rulesets
         - Include @owasp_crs/REQUEST-942-APPLICATION-ATTACK-SQLI.conf
         - Include @owasp_crs/REQUEST-941-APPLICATION-ATTACK-XSS.conf
