@@ -12,10 +12,20 @@ spec:
       labels:
         app: contitrans
     spec:
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: contitrans
           image: registry.kvlk.hu/contitrans:latest
           imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            capabilities:
+              drop:
+                - ALL
           envFrom:
             - secretRef:
                 name: contitrans-env
