@@ -25,6 +25,7 @@ config:
         Host        ${LOKI_URL}
         Port        443
         buffer_size 400k
+        tenant_id   385655
         Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name']
         Auto_Kubernetes_Labels On
 
