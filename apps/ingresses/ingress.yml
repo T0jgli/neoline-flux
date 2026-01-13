@@ -59,29 +59,3 @@ spec:
                 name: redirect-placeholder
                 port:
                   number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: sielni-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-http"
-    traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
-      ingresses-sielni-redirect@kubernetescrd
-spec:
-  tls:
-    - hosts:
-        - sielni.hu
-      secretName: sielni-tls
-  rules:
-    - host: sielni.hu
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: redirect-placeholder
-                port:
-                  number: 80
