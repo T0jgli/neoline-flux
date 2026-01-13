@@ -51,8 +51,8 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
           volumeMounts:
-            - name: next-cache
-              mountPath: /app/.next/cache
+            - name: next
+              mountPath: /app/.next
             - name: yarn-cache
               mountPath: /home/appuser/.cache
             - name: yarn
@@ -60,7 +60,7 @@ spec:
             - name: tmp-dir
               mountPath: /tmp
       volumes:
-        - name: next-cache
+        - name: next
           emptyDir: {}
         - name: tmp-dir
           emptyDir: {}
