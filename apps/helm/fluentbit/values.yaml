@@ -24,7 +24,7 @@ config:
         Match       matched.*
         Host        ${LOKI_URL}
         Port        443
-        BatchSize   400k
+        buffer_size 400k
         Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name']
         Auto_Kubernetes_Labels On
 
