@@ -1,0 +1,14 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "portainer-policy"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: portainer-agent
+  ingress:
+    - fromCIDRSet:
+        - cidr: 10.0.0.70/32
+      toPorts:
+        - ports:
+            - port: "9001"
