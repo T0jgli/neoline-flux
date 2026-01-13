@@ -1,0 +1,18 @@
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-clients
+spec:
+  endpointSelector:
+    matchLabels:
+      app: contibus
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: kube-system
+      toPorts:
+        - ports:
+            - port: "8081"
+              protocol: TCP

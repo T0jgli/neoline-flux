@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contitrans
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contitrans
+  template:
+    metadata:
+      labels:
+        app: contitrans
+    spec:
+      containers:
+        - name: contitrans
+          image: registry.kvlk.hu/contitrans:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+              name: contitrans-env
+          ports:
+            - name: http
+              containerPort: 8084
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            failureThreshold: 3

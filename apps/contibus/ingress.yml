@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: contibus-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+spec:
+  tls:
+    - hosts:
+        - contibus.hu
+      secretName: contibus-tls
+  rules:
+    - host: contibus.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: contibus-service
+                port:
+                  number: 80

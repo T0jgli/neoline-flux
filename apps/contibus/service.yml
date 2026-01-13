@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: contibus-service
+spec:
+  type: ClusterIP
+  selector:
+    app: contibus
+  ports:
+    - name: contibus
+      port: 80
+      targetPort: http

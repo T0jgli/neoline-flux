@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contibus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contibus
+  template:
+    metadata:
+      labels:
+        app: contibus
+    spec:
+      containers:
+        - name: contibus
+          image: registry.kvlk.hu/contibus:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+              name: contibus-env
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            failureThreshold: 3

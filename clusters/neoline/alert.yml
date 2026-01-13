@@ -1,0 +1,43 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: discord
+  namespace: flux-system
+spec:
+  type: discord
+  secretRef:
+    name: discord-webhook
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: discord-webhook
+  namespace: flux-system
+spec:
+  encryptedData:
+    address: AgA47+tQw5u9tObQ5AGNH8G4kNklE7hqtUV3YcqfRgbapCvQK/3FsKb6vFjTIF0pXEdtyR0s7jhVMxAY8iwOWbaPOM90CigklHztP2T0FtR4J6EV2Yoxq0GwB24JmbgCDw+IRevrEe+YsVW+mxZ5nWMm2EyMVT81XHPW8jy4pcRtZ11Jo0D91+7rm/soBMyZQyiw/e2oQBHRfptlYv4ag+CACcotd6VQB1YsFIQ8YnbsVupOJ7H4bdtL1f+2rx+PalE+1xx9mGyFAnVMmJCOZpnYvtdaItP5LZq6qfB8PMTgv1dKozxvfZOmDh1R1UAP6Zgqbe6spRhETf7COcXBwMrueDfutw7KMHtyN4gjSBDZCdO5qPkA3eiDrBEG2KXvO8bUmG1IIN2o0QvFxTTx5Rv0EIJexy6AvNTE8MZwbWOZcse1VoRyIwEaBRTYL/diV7MP8R6zSWZRIs65OrzI1WPynzYKttlLX/l8gSyt38tk5XdhAlfznU3wDAhKKAZHFh7Y15xlHUvmHONC4/sOQV0KcyDYihhTKae6rvUZN2yw8TgGl6f8/nX4bbpS425POwFLX7ZzPOkzzVdl5ykWqV49yY5fKbLGRuZB47PDHgkPxudkP0iPN3MOcXfVHxUKhdf7dGrpJbKs7knnDX1VR5/0hFlRfFSqg4zZimPNLLn9lDbtloHHesdaagOKJcpH09rwSVNHl6z2Fn1TDM6jAPaRgWbDUmfu16RuGwfeMEJyiLRNVLuLt50qhKenOpIivtybsNdLE0Rqo2YfPc4bpuAhiT0eleNHfZlPoFgvfGItAQ9cQx03Ep7Y2tfjU+k+TvtjOD5CXfGklgZDo8hG615SrYq708ToTJhV
+  template:
+    metadata:
+      creationTimestamp: null
+      name: discord-webhook
+      namespace: flux-system
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-alert
+  namespace: flux-system
+spec:
+  summary: "Cluster addons impacted in neoline cluster"
+  providerRef:
+    name: discord
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+      name: "*"
+    - kind: Kustomization
+      name: "*"
+    - kind: HelmRelease
+      name: "*"

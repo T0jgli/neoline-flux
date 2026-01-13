@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: contitrans-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+spec:
+  tls:
+    - hosts:
+        - neoline-contitrans.hu
+      secretName: contitrans-tls
+  rules:
+    - host: neoline-contitrans.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: contitrans-service
+                port:
+                  number: 80
