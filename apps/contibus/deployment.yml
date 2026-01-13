@@ -53,10 +53,18 @@ spec:
           volumeMounts:
             - name: next-cache
               mountPath: /app/.next/cache
+            - name: yarn-cache
+              mountPath: /home/appuser/.cache
+            - name: yarn
+              mountPath: /home/appuser/.yarn
             - name: tmp-dir
               mountPath: /tmp
       volumes:
         - name: next-cache
           emptyDir: {}
         - name: tmp-dir
+          emptyDir: {}
+        - name: yarn-cache
+          emptyDir: {}
+        - name: yarn
           emptyDir: {}
