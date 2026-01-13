@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: autobuszjegy-redirect
+spec:
+  redirectRegex:
+    regex: "^https?://autobuszjegy.hu/(.*)"
+    replacement: "https://kalandozas.hu"
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: kalandozastravel-redirect
+spec:
+  redirectRegex:
+    regex: "^https?://kalandozastravel.hu/(.*)"
+    replacement: "https://kalandozas.hu"
+    permanent: true

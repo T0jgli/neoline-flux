@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: autobuszjegy-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd,
+      ingresses-autobuszjegy-redirect@kubernetescrd
+spec:
+  tls:
+    - hosts:
+        - autobuszjegy.hu
+      secretName: autobuszjegy-tls
+  rules:
+    - host: autobuszjegy.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop@internal
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kalandozastravel-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd,
+      ingresses-kalandozastravel-redirect@kubernetescrd
+spec:
+  tls:
+    - hosts:
+        - kalandozastravel.hu
+      secretName: kalandozastravel-tls
+  rules:
+    - host: kalandozastravel.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop@internal
+                port:
+                  number: 80
