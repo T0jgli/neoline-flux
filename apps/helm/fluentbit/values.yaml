@@ -22,10 +22,11 @@ config:
     [OUTPUT]
         Name        loki
         Match       matched.*
-        Host        ${LOKI_URL}
+        Host        logs-prod-013.grafana.net
         Port        443
+        http_user   ${USERNAME}
+        http_passwd ${PASSWORD}
         buffer_size 400k
-        tenant_id   385655
         Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name']
         Auto_Kubernetes_Labels On
 
