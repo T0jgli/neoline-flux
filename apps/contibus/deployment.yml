@@ -22,7 +22,6 @@ spec:
       containers:
         - name: contibus
           image: registry.kvlk.hu/contibus:69-c5feb5d # {"$imagepolicy": "flux-system:contibus-policy"}
-          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false

@@ -20,7 +20,6 @@ spec:
       containers:
         - name: contitrans
           image: registry.kvlk.hu/contitrans:32-4e077b5 # {"$imagepolicy": "flux-system:contitrans-policy"}
-          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false

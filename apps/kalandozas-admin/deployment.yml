@@ -20,7 +20,6 @@ spec:
       containers:
         - name: kalandozas-admin
           image: registry.kvlk.hu/kalandozas-admin:8-f93ad77 # {"$imagepolicy": "flux-system:kalandozas-admin-policy"}
-          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false
