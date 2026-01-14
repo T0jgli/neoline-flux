@@ -42,7 +42,19 @@ spec:
       name: "*"
     - kind: ImageRepository
       name: "*"
-    - kind: ImagePolicy
-      name: "*"
     - kind: ImageUpdateAutomation
+      name: "*"
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-info
+  namespace: flux-system
+spec:
+  summary: "Cluster addons impacted in neoline cluster"
+  providerRef:
+    name: discord
+  eventSeverity: info
+  eventSources:
+    - kind: ImagePolicy
       name: "*"
