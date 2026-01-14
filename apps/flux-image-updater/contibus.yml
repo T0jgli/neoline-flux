@@ -4,6 +4,7 @@ metadata:
   name: contibus
 spec:
   image: registry.kvlk.hu/contibus
+  interval: 2m
   secretRef:
     name: regcred
 ---

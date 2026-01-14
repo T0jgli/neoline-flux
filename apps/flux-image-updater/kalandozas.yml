@@ -4,6 +4,7 @@ metadata:
   name: kalandozas
 spec:
   image: registry.kvlk.hu/kalandozas
+  interval: 2m
   secretRef:
     name: regcred
 ---

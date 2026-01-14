@@ -4,6 +4,7 @@ metadata:
   name: contitrans
 spec:
   image: registry.kvlk.hu/contitrans
+  interval: 2m
   secretRef:
     name: regcred
 ---
