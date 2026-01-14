@@ -19,7 +19,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: contitrans
-          image: registry.kvlk.hu/contitrans:32-4e077b5 # {"$imagepolicy": "flux-system:contitrans-policy"}
+          image: registry.kvlk.hu/contitrans:33-1974052 # {"$imagepolicy": "flux-system:contitrans-policy"}
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false
