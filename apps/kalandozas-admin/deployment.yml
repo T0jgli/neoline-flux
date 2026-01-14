@@ -19,7 +19,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: kalandozas-admin
-          image: registry.kvlk.hu/kalandozas-admin:latest # {"$imagepolicy": "flux-system:kalandozas-admin-policy"}
+          image: registry.kvlk.hu/kalandozas-admin:7-02170b1 # {"$imagepolicy": "flux-system:kalandozas-admin-policy"}
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
