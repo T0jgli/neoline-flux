@@ -3,7 +3,7 @@ kind: ImageUpdateAutomation
 metadata:
   name: fleet-automation
 spec:
-  interval: 2m
+  interval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system
