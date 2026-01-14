@@ -14,3 +14,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: kalandozas-admin
+  policy:
+    filterTags:
+      pattern: "^(?P<number>[0-9]+)-[a-f0-9]+$"
+      extract: "$build"
+    numerical:
+      order: asc
