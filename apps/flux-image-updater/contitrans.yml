@@ -1,0 +1,16 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: contitrans
+spec:
+  image: registry.kvlk.hu/contitrans
+  secretRef:
+    name: regcred
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: contitrans-policy
+spec:
+  imageRepositoryRef:
+    name: contitrans

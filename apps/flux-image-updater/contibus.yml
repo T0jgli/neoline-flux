@@ -1,0 +1,16 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: contibus
+spec:
+  image: registry.kvlk.hu/contibus
+  secretRef:
+    name: regcred
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: contibus-policy
+spec:
+  imageRepositoryRef:
+    name: contibus
