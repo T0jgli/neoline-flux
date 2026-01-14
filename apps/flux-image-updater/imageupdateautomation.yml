@@ -15,10 +15,9 @@ spec:
       author:
         email: fluxbot@example.com
         name: fluxbot
-      # This template will list all images updated in a single commit
       messageTemplate: |
         Automated image update
-        {{range .Updated.Images}}{{println .}}{{end}}
+        {{range .Changed.Images}}{{println .}}{{end}}
     push:
       branch: main
   update:
