@@ -21,7 +21,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: contibus
-          image: registry.kvlk.hu/contibus:latest # {"$imagepolicy": "flux-system:contibus"}
+          image: registry.kvlk.hu/contibus:latest # {"$imagepolicy": "flux-system:contibus-policy"}
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
