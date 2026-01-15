@@ -10,3 +10,5 @@ resources:
   - crd.yml
   - system-upgrade-controller.yml
   - networkpolicy.yml
+
+  - upgrade.yml
