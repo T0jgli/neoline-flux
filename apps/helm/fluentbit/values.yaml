@@ -48,7 +48,7 @@ config:
         http_user   ${USERNAME}
         http_passwd ${PASSWORD}
         buffer_size 400k
-        Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name']
+        Labels      job=fluent-bit, namespace=$kubernetes['namespace_name'], container=$kubernetes['container_name'], cluster=neoline
         Auto_Kubernetes_Labels On
 
 envFrom:
