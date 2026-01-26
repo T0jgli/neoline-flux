@@ -29,18 +29,10 @@ config:
         K8S-Logging.Parser  On
         K8S-Logging.Exclude Off
 
-    # This filter re-tags logs only if they come from specific namespaces
-    [FILTER]
-        Name                  rewrite_tag
-        Match                 kube.*
-        Rule                  $kubernetes['namespace_name'] ^(contibus|contitrans|kalandozas|kalandozas-admin)$  matched.$TAG true
-        Emitter_Name          re_emitted_logs
-
   outputs: |
-    # Only send logs that were re-tagged with "matched.*"
     [OUTPUT]
         Name        loki
-        Match       matched.*
+        Match       *
         Host        logs-prod-013.grafana.net
         port        443
         tls         on
