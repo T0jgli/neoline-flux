@@ -12,7 +12,6 @@ spec:
   tls:
     - hosts:
         - neoline-contitrans.hu
-        - www.neoline-contitrans.hu
       secretName: contitrans-tls
   rules:
     - host: neoline-contitrans.hu

@@ -12,7 +12,6 @@ spec:
   tls:
     - hosts:
         - contibus.hu
-        - www.contibus.hu
       secretName: contibus-tls
   rules:
     - host: contibus.hu
