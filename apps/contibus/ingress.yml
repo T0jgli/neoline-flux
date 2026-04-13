@@ -6,11 +6,13 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
       kube-system-redirect-https@kubernetescrd,
+      ingresses-redirect-www-to-non-www@kubernetescrd,
       kube-system-secure-chain@kubernetescrd
 spec:
   tls:
     - hosts:
         - contibus.hu
+        - www.contibus.hu
       secretName: contibus-tls
   rules:
     - host: contibus.hu
