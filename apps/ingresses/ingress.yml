@@ -59,3 +59,81 @@ spec:
                 name: redirect-placeholder
                 port:
                   number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: www-autobuszjegy-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd,
+      ingresses-www-autobuszjegy-redirect@kubernetescrd
+spec:
+  tls:
+    - hosts:
+        - www.autobuszjegy.hu
+      secretName: www-autobuszjegy-tls
+  rules:
+    - host: www.autobuszjegy.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-placeholder
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: www-contibus-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd,
+      ingresses-www-contibus-redirect@kubernetescrd
+spec:
+  tls:
+    - hosts:
+        - www.contibus.hu
+      secretName: www-contibus-tls
+  rules:
+    - host: www.contibus.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-placeholder
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: www-neoline-contitrans-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-http"
+    traefik.ingress.kubernetes.io/router.middlewares: |
+      kube-system-redirect-https@kubernetescrd,
+      ingresses-www-neoline-contitrans-redirect@kubernetescrd
+spec:
+  tls:
+    - hosts:
+        - www.neoline-contitrans.hu
+      secretName: www-neoline-contitrans-tls
+  rules:
+    - host: www.neoline-contitrans.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-placeholder
+                port:
+                  number: 80

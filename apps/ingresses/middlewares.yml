@@ -17,3 +17,34 @@ spec:
     regex: "^https?://kalandozastravel.hu/(.*)"
     replacement: "https://kalandozas.hu"
     permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: www-autobuszjegy-redirect
+spec:
+  redirectRegex:
+    regex: "^https?://www.autobuszjegy.hu/(.*)"
+    replacement: "https://kalandozas.hu"
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: www-contibus-redirect
+spec:
+  redirectRegex:
+    regex: "^https?://www.contibus.hu/(.*)"
+    replacement: "https://contibus.hu"
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: www-neoline-contitrans-redirect
+spec:
+  redirectRegex:
+    regex: "^https?://www.neoline-contitrans.hu/(.*)"
+    replacement: "https://neoline-contitrans.hu"
+    permanent: true
+---
