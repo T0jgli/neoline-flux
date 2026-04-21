@@ -64,3 +64,4 @@ spec:
     souin:
       default_cache:
         ttl: 60s
+        default_cache_control: "public, max-age=86400"
