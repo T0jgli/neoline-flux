@@ -5,7 +5,8 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: |
       kube-system-redirect-https@kubernetescrd,
-      kube-system-secure-chain@kubernetescrd
+      kube-system-secure-chain@kubernetescrd,
+      kube-system-cache@kubernetescrd
 spec:
   tls:
     - hosts:
