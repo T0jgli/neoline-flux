@@ -12,7 +12,6 @@ clusters/neoline/          # Flux entrypoint – Kustomization references
 │   ├── kalandozas/        # Kalandozas
 │   ├── kalandozas-admin/  # Kalandozas admin frontend
 │   ├── portainer-agent/   # Portainer agent
-│   ├── postgresql/        # CloudNative-PG cluster
 │   ├── flux-image-updater/# Image automation policies
 │   ├── helm/              # Helm chart releases & repositories
 │   └── ingresses/         # Shared ingress resources & middlewares
