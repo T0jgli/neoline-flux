@@ -8,6 +8,8 @@ namespace: system-upgrade
 
 resources:
   - crd.yml
+  - clusterrole.yml
+  - clusterrolebinding.yml
   - system-upgrade-controller.yml
   - networkpolicy.yml
 
