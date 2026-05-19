@@ -9,19 +9,22 @@ spec:
   secretRef:
     name: discord-webhook
 ---
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
   name: discord-webhook
   namespace: flux-system
 spec:
-  encryptedData:
-    address: AgCXdUNQ7RmJBUDKZcizYXXf7vw3aWX6/0kL1toOe3485/+dY4mhbOVfxI6hTrOvmPlwCDqwtYiUHY4OZkgseSqEuWmh9qHtrgvJp7QtK1baBP0imX4wVm6OzX4TUsNIArIFtl4HNChhXR0j2IfRzYv3LJu4kSeQIJQURkrRVupFALSnqEXJ705wW+jjbx8PyeI/ARVwikYobE0GKmk3j1Glel2eOINdlGw+Yd2ENQw22YXXzO9IMefbITdsqBTCT2io8M9R6yoXK4Cw7AGeS4Bc0sb0pLAyZxRNHBNqWvRXTObKZbIy8Wcgy4VJceEjetcRpBkSXFZmXnCDKcRuc1mcg/9KVDzMSg3hpIRUN1MltJZr1/lJuRY1GsE5noYuvqopKGgMCP+AGKw31R8DF7pVWRvFNj2+XxDBg2DSZ2vxLlNfGozSwukGQM/OiSgX0v0Qe4dMoE4YQLnJKJhhxGGuAxfi6fevb4BGzPXO+NTXoS8U8N7ls/fAKYRrIogl8FwJsycJLMj5dVCh77wOChMDjA9NzO0o7CS2natwYn2m7U8vpQ5Pf46RR6NqYweWoe9uc6UwaVU7/61bWW1AeoMHge4Am/xD68GvwNZhenB+6KCPfl+Vv8/umdeB+mU5tDVqKa5Bt6pavtpROurORXSXbTw7gX9Oofk5cVLm6zEiCLXnBhd5LgkG9dgAL8tkWv+rGfszT7tX05vPvlhDKcfGO0zW1lRCm+9pwpxym0bkKMSLzk7pmVDF7Uw425UD17rbdWpAD7dZBF+sbzu6sGMlkKiaIrKI41w+LtTTwkdcr6ED7bHSKMBSdwImorTcg9vCoSUl7RSv7xxXbbrNd3jmNTuKywCToMS6
-  template:
-    metadata:
-      name: discord-webhook
-      namespace: flux-system
-    type: Opaque
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: bitwarden-secretsmanager
+    kind: ClusterSecretStore
+  target:
+    name: discord-webhook
+  data:
+    - secretKey: address
+      remoteRef:
+        key: flux-system-discord-webhook
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
