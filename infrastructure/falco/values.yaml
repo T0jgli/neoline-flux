@@ -11,3 +11,9 @@ resources:
   requests:
     cpu: 0m
     memory: 0Mi
+
+falco:
+  rules:
+    - disable:
+        rule: Drop and execute new binary in container
+  priority: warning
