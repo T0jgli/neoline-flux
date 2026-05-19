@@ -46,3 +46,5 @@ config:
 envFrom:
   - secretRef:
       name: loki-credentials
+
+logLevel: warning
