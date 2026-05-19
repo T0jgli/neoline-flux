@@ -2,3 +2,9 @@ bitwarden-sdk-server:
   enabled: true
 log:
   level: warning
+webhook:
+  log:
+    level: warning
+certController:
+  log:
+    level: warning
