@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
   - middlewares.yml
-  - networkpolicies.yml
+  # - networkpolicies.yml
