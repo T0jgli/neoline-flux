@@ -5,8 +5,6 @@ metadata:
   name: fluentbit-config
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: infrastructure
   interval: 30m0s
   path: ./infrastructure/fluentbit-config
   prune: true

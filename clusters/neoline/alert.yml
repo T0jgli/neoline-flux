@@ -5,8 +5,6 @@ metadata:
   name: alert
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: infrastructure
   interval: 30m0s
   path: ./infrastructure/alert
   prune: true
