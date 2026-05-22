@@ -4,9 +4,7 @@ kind: Kustomization
 namespace: external-secrets
 
 resources:
-  - bitwarden.yaml
   - external-secrets.yaml
-  - clustersecretstore.yaml
   - networkpolicy.yaml
 
 configMapGenerator:

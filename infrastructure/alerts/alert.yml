@@ -1,0 +1,46 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: discord
+  namespace: flux-system
+spec:
+  type: discord
+  secretRef:
+    name: discord-webhook
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-alert
+  namespace: flux-system
+spec:
+  summary: "Cluster addons impacted in neoline cluster"
+  providerRef:
+    name: discord
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+      name: "*"
+    - kind: Kustomization
+      name: "*"
+    - kind: HelmRelease
+      name: "*"
+    - kind: ImageRepository
+      name: "*"
+    - kind: ImageUpdateAutomation
+      name: "*"
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-info
+  namespace: flux-system
+spec:
+  summary: "Cluster addons impacted in neoline cluster"
+  providerRef:
+    name: discord
+  eventSeverity: info
+  eventSources:
+    - kind: ImagePolicy
+      name: "*"
