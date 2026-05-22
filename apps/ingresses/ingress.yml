@@ -15,7 +15,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       ingresses-autobuszjegy-redirect@kubernetescrd
 spec:
   tls:
@@ -41,7 +40,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       ingresses-kalandozastravel-redirect@kubernetescrd
 spec:
   tls:
@@ -67,7 +65,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       ingresses-redirect-www-to-non-www@kubernetescrd
 spec:
   tls:
@@ -93,7 +90,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       ingresses-redirect-www-to-non-www@kubernetescrd
 spec:
   tls:
@@ -119,7 +115,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-http"
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       ingresses-redirect-www-to-non-www@kubernetescrd
 spec:
   tls:

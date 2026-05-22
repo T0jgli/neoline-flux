@@ -4,7 +4,6 @@ metadata:
   name: kalandozas-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: |
-      kube-system-redirect-https@kubernetescrd,
       kube-system-secure-chain@kubernetescrd
 spec:
   tls:
