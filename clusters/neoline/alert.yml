@@ -8,23 +8,23 @@ spec:
   type: discord
   secretRef:
     name: discord-webhook
----
-apiVersion: external-secrets.io/v1
-kind: ExternalSecret
-metadata:
-  name: discord-webhook
-  namespace: flux-system
-spec:
-  refreshInterval: "1h"
-  secretStoreRef:
-    name: bitwarden-secretsmanager
-    kind: ClusterSecretStore
-  target:
-    name: discord-webhook
-  data:
-    - secretKey: address
-      remoteRef:
-        key: flux-system-discord-webhook
+# ---
+# apiVersion: external-secrets.io/v1
+# kind: ExternalSecret
+# metadata:
+#   name: discord-webhook
+#   namespace: flux-system
+# spec:
+#   refreshInterval: "1h"
+#   secretStoreRef:
+#     name: bitwarden-secretsmanager
+#     kind: ClusterSecretStore
+#   target:
+#     name: discord-webhook
+#   data:
+#     - secretKey: address
+#       remoteRef:
+#         key: flux-system-discord-webhook
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert

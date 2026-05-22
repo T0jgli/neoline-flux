@@ -17,7 +17,7 @@ clusters/neoline/          # Flux entrypoint – Kustomization references
 │   └── ingresses/         # Shared ingress resources & middlewares
 ├── infrastructure/        # Cluster-wide infrastructure
 │   ├── cert-manager/      # TLS certificate automation (Let's Encrypt)
-│   ├── cnpg/              # CloudNative PostgreSQL operator
+│   ├── external-secrets/  # External Secrets Operator (Bitwarden)
 │   ├── falco/             # Runtime security monitoring
 │   ├── system-upgrade/    # Automated K3s upgrades
 │   └── traefik/           # Ingress controller middlewares & network policies
@@ -32,7 +32,7 @@ clusters/neoline/          # Flux entrypoint – Kustomization references
 | **Cilium**                    | CNI plugin & network policies (replaces kube-proxy)           |
 | **Traefik**                   | Ingress controller                                            |
 | **cert-manager**              | Automated TLS via Let's Encrypt (HTTP-01 & DNS-01/Cloudflare) |
-| **Sealed Secrets**            | Encrypted secrets in Git                                      |
+| **External Secrets Operator** | Secrets synced from Bitwarden Secrets Manager                 |
 | **Falco**                     | Runtime threat detection                                      |
 | **System Upgrade Controller** | Automated K3s version upgrades                                |
 | **Portainer Agent**           | Container management                                          |
@@ -58,7 +58,7 @@ All application images are hosted on a private registry (`registry.kvlk.hu`).
 
 - **Pod Security** – All workloads run as non-root with `seccompProfile: RuntimeDefault` and no privilege escalation
 - **Network Policies** – Cilium `CiliumNetworkPolicy` resources restrict ingress to Traefik only
-- **Secrets** – Managed via Sealed Secrets; encrypted at rest in Git
+- **Secrets** – Managed via External Secrets Operator; sourced from Bitwarden Secrets Manager at runtime
 - **TLS** – Enforced HTTPS redirect, HSTS, and security headers via Traefik middleware chain
 - **Rate Limiting** – Global rate limit applied at the ingress layer
 - **Runtime Monitoring** – Falco provides behavioral threat detection
@@ -66,7 +66,15 @@ All application images are hosted on a private registry (`registry.kvlk.hu`).
 
 ## Prerequisites
 
-- A Linux node
+- K3s cluster
+- Flux CLI installed
 - Network access to GitHub and the private container registry
+- Bitwarden Secrets Manager access token (for secret synchronization)
 - Cloudflare API token (for DNS-01 certificate challenges)
 - Discord webhook URL (for alerts)
+
+## Secrets
+
+All secrets are managed via [External Secrets Operator](https://external-secrets.io/) backed by [Bitwarden Secrets Manager](https://bitwarden.com/products/secrets-manager/).
+
+A `ClusterSecretStore` connects to Bitwarden via an in-cluster SDK server. Each application defines an `ExternalSecret` resource that references secrets by their Bitwarden ID, and ESO syncs them into native Kubernetes Secrets automatically.
