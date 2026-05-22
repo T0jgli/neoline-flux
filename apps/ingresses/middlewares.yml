@@ -15,7 +15,7 @@ metadata:
 spec:
   redirectRegex:
     regex: "^https?://kalandozastravel.hu/(.*)"
-    replacement: "https://kalandozas.hu"
+    replacement: "https://kalandozas.hu/${1}"
     permanent: true
 ---
 apiVersion: traefik.io/v1alpha1
