@@ -9,6 +9,7 @@ namespace: kalandozas-admin
 resources:
   - ns.yml
 
+  - secrets.yml
   - service.yml
   - deployment.yml
   - ingress.yml
