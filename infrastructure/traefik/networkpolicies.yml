@@ -1,20 +1,29 @@
-# apiVersion: "cilium.io/v2"
-# kind: CiliumNetworkPolicy
-# metadata:
-#   name: "traefik-policy"
-#   namespace: kube-system
-# spec:
-#   endpointSelector:
-#     matchLabels:
-#       app.kubernetes.io/name: traefik
-#   ingress:
-#     - fromEntities:
-#         - world
-#         - host
-#         - remote-node
-#       toPorts:
-#         - ports:
-#             - port: "8000"
-#               protocol: TCP
-#             - port: "8443"
-#               protocol: TCP
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "traefik-policy"
+  namespace: kube-system
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: traefik
+  ingress:
+    - fromEntities:
+        - world
+        - host
+        - remote-node
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+            - port: "8443"
+              protocol: TCP
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: cert-manager
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+            - port: "8443"
+              protocol: TCP
