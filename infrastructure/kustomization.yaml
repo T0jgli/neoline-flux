@@ -7,4 +7,4 @@ resources:
   - falco
   - system-upgrade
   - traefik
-  # - fluentbit
+  - fluentbit
